@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,80 +51,31 @@ class _SplashScreenState extends State<SplashScreen> {
 
       log('Message also contained a notification: ${message.notification!}');
     });
-    Timer(Duration(milliseconds: 1), () async {
-      try {
-        var token = await storageServie!.getAccessToken(StorageKeys.token.toString());
-        var data = await storageServie!.getData(StorageKeys.user.toString());
-        var firstTime = await storageServie!.getBoolData(StorageKeys.first_time.toString());
+    /*Timer(Duration(milliseconds: 1), () async {
 
-        if (data != null) {
-          context.read<AuthProvider>().user = data;
-        }
-        if (token != null) {
-          await context.read<AuthProvider>().getUpdatedLoginUser(context.read<AuthProvider>().user!.id, context);
-          await context.read<ProductProvider>().getHomeProducts();
-          await context.read<ProductProvider>().getHomeSlider();
-
-          await context.read<ProductProvider>().getFavoriteProducts();
-          await context.read<BidProvider>().getSentOffer(false);
-          await context.read<BidProvider>().getRecievedOffers(false);
-          await context.read<AuthProvider>().getCountries(context);
-        }
-        await context.read<ProductProvider>().getGuestHomeProducts();
-        await context.read<ProductProvider>().getHomeSlider();
-        await context.read<ProductProvider>().getCategoriesAndBrand();
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(
-        //     builder: (BuildContext context) => BoardingScreen(),
-        //   ),
-        // );
-        if (firstTime == null || firstTime == false) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => BoardingScreen(),
-            ),
-          );
-        } else {
-          if (context.read<AuthProvider>().user != null) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (BuildContext context) => BottomNav(
-                navIndex: 0,
-              ),
-            ));
-          } else {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
-          }
-        }
-      } catch (err) {
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(
-        //     builder: (BuildContext context) => BoardingScreen(),
-        //   ),
-        // );
-        if (context.read<AuthProvider>().user != null) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => BottomNav(
-                navIndex: 0,
-              ),
-            ),
-          );
-        } else {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => LoginPage(),
-            ),
-          );
-        }
-      }
-    });
+    });*/
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     context.read<CurrencyProvider>().setCurrency();
-    return Scaffold(
+    return EasySplashScreen(
+      logo: Image.asset(
+        'assets/splashLogo.png',
+        width: MediaQuery.of(context).size.width * .7,
+        height: MediaQuery.of(context).size.height * .07,
+      ),
+      backgroundColor: Colors.black,
+      showLoader: true,
+      loaderColor: Colors.white,
+      loadingText: Text(
+        "Loading...",
+        style: TextStyle(color: Colors.white),
+      ),
+      futureNavigator: futureCall(),
+    );
+    /*Scaffold(
       // backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -137,6 +89,81 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
-    );
+    );*/
   }
+
+  Future<Widget> futureCall() async {
+    try {
+      var token =
+      await storageServie!.getAccessToken(StorageKeys.token.toString());
+      var data = await storageServie!.getData(StorageKeys.user.toString());
+      var firstTime =
+      await storageServie!.getBoolData(StorageKeys.first_time.toString());
+
+      if (data != null) {
+        context.read<AuthProvider>().user = data;
+      }
+      if (token != null) {
+        await context.read<AuthProvider>().getUpdatedLoginUser(
+            context.read<AuthProvider>().user!.id, context);
+        await context.read<ProductProvider>().getHomeProducts();
+        await context.read<ProductProvider>().getHomeSlider();
+
+        await context.read<ProductProvider>().getFavoriteProducts();
+        await context.read<BidProvider>().getSentOffer(false);
+        await context.read<BidProvider>().getRecievedOffers(false);
+        await context.read<AuthProvider>().getCountries(context);
+      }
+      await context.read<ProductProvider>().getGuestHomeProducts();
+      await context.read<ProductProvider>().getHomeSlider();
+      await context.read<ProductProvider>().getCategoriesAndBrand();
+      if (firstTime == null || firstTime == false) {
+        return BoardingScreen();
+       /* Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => BoardingScreen(),
+          ),
+        );*/
+      } else {
+        if (context.read<AuthProvider>().user != null) {
+          return BottomNav(
+            navIndex: 0,
+          );
+         /* Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => BottomNav(
+              navIndex: 0,
+            ),
+          ));*/
+        } else {
+          return LoginPage();
+       /*   Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (BuildContext context) => LoginPage()));*/
+        }
+      }
+    } catch (err) {
+
+      if (context.read<AuthProvider>().user != null) {
+        return BottomNav(
+          navIndex: 0,
+        );
+        /*Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => BottomNav(
+              navIndex: 0,
+            ),
+          ),
+        );*/
+      } else {
+        return LoginPage();
+       /* Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => LoginPage(),
+          ),
+        );*/
+      }
+    }
+    //return Future.value(new HomePage());
+  }
+
+
 }

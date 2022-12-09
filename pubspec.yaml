@@ -72,6 +72,7 @@ dependencies:
   shimmer: ^2.0.0
   smooth_page_indicator: ^1.0.0+2
   image_cropper: ^1.5.1
+  easy_splash_screen: ^1.0.4
   # crop_image: ^1.0.2
   # bitmap: ^0.1.2
 
