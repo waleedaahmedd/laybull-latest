@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "757142519500",
+    "project_id": "laybull-49ba9",
+    "storage_bucket": "laybull-49ba9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757142519500:android:c4138e9ddc94dc75dc4c69",
+        "android_client_info": {
+          "package_name": "com.LaybullEcommerce.Laybull"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757142519500-qjb6kv0fm732hqb2v7nm8fcvvd2h5vj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh3aMLzVSsKheS6iSv9ZHXYHQK_lErsKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757142519500-qjb6kv0fm732hqb2v7nm8fcvvd2h5vj4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "757142519500-j1cqod8niul6f08q4q45r2bni1ascvnm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.LaybullEcommerce.Laybull"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
