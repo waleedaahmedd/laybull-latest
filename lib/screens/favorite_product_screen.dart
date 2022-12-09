@@ -17,7 +17,7 @@ import '../main.dart';
 
 class FavoriteProductScreen extends StatefulWidget {
   final bool isFromNavBar;
-  FavoriteProductScreen({required this.isFromNavBar});
+  FavoriteProductScreen({required this.isFromNavBar,Key? key}): super(key: key);
   @override
   _FavoriteProductScreenState createState() => _FavoriteProductScreenState();
 }

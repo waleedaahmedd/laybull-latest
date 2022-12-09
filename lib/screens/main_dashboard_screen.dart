@@ -23,6 +23,7 @@ import 'package:laybull_v3/util_services/utilservices.dart';
 import 'package:laybull_v3/widgets/main_account_drawer.dart';
 import 'package:laybull_v3/widgets/reusable_widget/app_text_field.dart';
 import 'package:laybull_v3/widgets/reusable_widget/myCustomProgressDialog.dart';
+import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:provider/src/provider.dart';
 
 import '../main.dart';
@@ -131,7 +132,7 @@ class _BottomNavState extends State<BottomNav> {
           key: scaffolKey,
           resizeToAvoidBottomInset: true,
           extendBody: false,
-          body: _children[_currentIndex],
+          body: LazyLoadIndexedStack(index: _currentIndex , children: _children),
           drawer: MainAccountDrawer(),
           appBar: AppBar(
               toolbarHeight: 60,

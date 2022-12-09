@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^0.8.5+1
   flutter_xlider: ^3.4.0
   flutter_rating_bar: ^4.0.0
+  lazy_load_indexed_stack: ^0.1.4
   infinite_carousel: ^1.0.2
   dio: ^4.0.6
   mime_type: ^1.0.0

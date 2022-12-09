@@ -431,14 +431,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 pp.homeData!.release != null || pp.homeData!.release!.isNotEmpty
                                     ? ConstrainedBox(
                                         constraints: BoxConstraints(maxHeight: 150.h),
-                                        child: ListView.separated(
+                                        child: ListView.builder(
                                             // padding: EdgeInsets.only(bottom: 10.0.h),
                                             shrinkWrap: true,
                                             scrollDirection: Axis.horizontal,
                                             itemCount: pp.homeData!.release!.length,
-                                            separatorBuilder: (context, index) => SizedBox(
+                                            /*separatorBuilder: (context, index) => SizedBox(
                                                   width: 10.w,
-                                                ),
+                                                ),*/
                                             itemBuilder: (context, index) {
                                               return ReleaseCalendarChip(
                                                 dateShow: true,
